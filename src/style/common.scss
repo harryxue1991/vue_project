@@ -1,0 +1,27 @@
+//common
+$commonFontColor : #888;
+$commonColorGreen : #29D0A2;
+$commonBorderColor : #e5e5e5;
+$commonBackgroundColor : #FAFAFA;
+$title: #253338;
+$content: #526E7A;
+$assist: #789F9C;
+$warning: #f66d60;
+$green: #84d156;
+$blue: #27A9F7;
+//z-index
+$level-1 : 1000;
+$level-2 : 900;
+$level-3 : 800;
+$level-4 : 700;
+$level-5 : 600;
+
+//基础font-size
+$font:16;
+//设计稿宽度
+$screen:750;
+
+
+@function px2rem($n){
+        @return #{$n/($screen*$font/320)}rem
+}
