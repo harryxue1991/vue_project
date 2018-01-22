@@ -1,9 +1,6 @@
 *.log
 .cache
-<<<<<<< HEAD
 .vscode
-=======
->>>>>>> edb5dbf3bdc7bf13335e0e78c5d9543a2bf54dee
 .DS_Store
 .idea
 build
