@@ -9,8 +9,8 @@ const store = new Vuex.Store({
                 age: '18',
                 sex: '男',
                 likes: [
-                        {"fruits":"apple","girl":"辛"},
-                        {"fruits":"banner","girl":"丝"}
+                        {"id":"1","fruits":"apple","girl":"辛"},
+                        {"id":"2","fruits":"banner","girl":"丝"}
                 ]
         },
         mutations: {
@@ -20,7 +20,10 @@ const store = new Vuex.Store({
         },
         getters: {
                 doneTodos: state => {  //过滤器, 过滤likes中gitl为'丝'的项目
-                        return state.todos.filter(todo => todo.girl == '丝')
+                        return state.likes.filter(todo => todo.girl == '丝')
+                },
+                getTodoById: (state) => (id) => {
+                        return state.likes.find(todo => todo.id === id)
                 }
         }
 })

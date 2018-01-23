@@ -10,8 +10,11 @@
                                 <el-input v-model="fruits" placeholder="输入水果"></el-input>
                                 <el-input v-model="girl" placeholder="输入girl"></el-input>
                         </div>
-
+                        <div class="input0">
+                                <el-input v-model="num" placeholder="getter查询数据"></el-input>
+                        </div>
                         <el-button type="primary" @click="addMsg">store添加数据</el-button>
+                        <el-button type="primary" @click="getStore">getter查询数据</el-button>
                         <el-button type="primary" @click="getMsg">获取服务器数据</el-button>
                         <div>
                                 <div v-for="(item,index) in mylike" :key="index">
@@ -22,6 +25,7 @@
                                                 <span v-text="item.girl"></span>
                                         </div>
                                 </div>
+                                <div v-if="getFruits != null" v-text="getFruits.fruits"></div>
                         </div>
                         <div>
                                 <div v-text="name"></div>
@@ -43,7 +47,9 @@ export default {
                         age:'',
                         // ------------------
                         fruits:'',
-                        girl:''
+                        girl:'',
+                        num:'',
+                        getFruits: {}
                 }
         },
         components: {
@@ -55,7 +61,7 @@ export default {
                         return this.$store.state.likes
                 },
                 myName() {
-                          return this.$store.state.name
+                        return this.$store.state.name
                 }
         },
         mounted(){
@@ -78,6 +84,9 @@ export default {
                 },
                 changeState(arr) {
                         this.$store.commit('newLikes', this.mylike.push(arr))
+                },
+                getStore() {
+                        this.getFruits = this.$store.getters.getTodoById(this.num);
                 }
         },
 }
