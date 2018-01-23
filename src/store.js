@@ -6,7 +6,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
         state: {
                 name: '薛辛超',
-                age: '18'
+                age: '18',
+                sex: '男'
         }
 })
 
