@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Message } from 'element-ui';
 
 // 全局的 axios 默认值
-axios.defaults.timeout = 5000;  //请求话费了超过 `timeout` 的时间，请求将被中断
+axios.defaults.timeout = 5000;  //请求花费了超过 `timeout` 的时间，请求将被中断
 axios.defaults.baseURL = 'http://127.0.0.1:8899/';
 // axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
 // axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';

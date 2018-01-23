@@ -2,11 +2,27 @@
         <div  id="Home">
                 <Header></Header>
                 <div class="main">
+                        <div>
+                                <router-link  to="girl" class="link">跳转到girl</router-link>
+                        </div>
                         <div class="content">home的 内容</div>
-                        <router-link  to="xin">预览</router-link>
-                        <el-radio v-model="radio" label="1">选项1</el-radio>
-                        <el-radio v-model="radio" label="2">选项2</el-radio>
-                        <el-button type="primary" @click="getMsg">按钮</el-button>
+                        <div class="input0">
+                                <el-input v-model="fruits" placeholder="输入水果"></el-input>
+                                <el-input v-model="girl" placeholder="输入girl"></el-input>
+                        </div>
+
+                        <el-button type="primary" @click="addMsg">store添加数据</el-button>
+                        <el-button type="primary" @click="getMsg">获取服务器数据</el-button>
+                        <div>
+                                <div v-for="(item,index) in mylike" :key="index">
+                                        <div>
+                                                <span>我是</span>
+                                                <span>{{myName}}</span>
+                                                <span v-text="item.fruits"></span>
+                                                <span v-text="item.girl"></span>
+                                        </div>
+                                </div>
+                        </div>
                         <div>
                                 <div v-text="name"></div>
                                 <div v-text="age"></div>
@@ -19,16 +35,28 @@
 import Header from '../components/Header'
 import Footer from '../components/Footer'
 export default {
+        name: 'home',
         data(){
                 return{
                         radio:'1',
                         name:'',
-                        age:''
+                        age:'',
+                        // ------------------
+                        fruits:'',
+                        girl:''
                 }
         },
         components: {
                 Header,
                 Footer
+        },
+        computed: {  //将store映射到组件
+                mylike() {                             //mylike 可以直接在html 中使用, 可以定义为数组或字符串
+                        return this.$store.state.likes
+                },
+                myName() {
+                          return this.$store.state.name
+                }
         },
         mounted(){
 
@@ -40,6 +68,16 @@ export default {
                                 this.name = response.name;
                                 this.age = response.age;
                         })
+                },
+                addMsg: function() {
+                        if(this.girl == '' || this.fruits == '') {
+                                this.$message.error('请输入内容')
+                        }else{
+                                this.changeState({'fruits':this.fruits,'girl':this.girl});
+                        }
+                },
+                changeState(arr) {
+                        this.$store.commit('newLikes', this.mylike.push(arr))
                 }
         },
 }
@@ -50,11 +88,24 @@ export default {
         height: 100%;
         .main {
                 min-height: calc(100% - 162px);
+                box-sizing: border-box;
+                padding: 0 20px;
         }
         .content {
+                text-align: center;
+                margin: 0 auto 30px;
                 color: $blue;
                 font-size: 22px;
                 width: px2rem(1000);
+        }
+        .link {
+                font-size: 24px;
+                color: $blue;
+                border: 1px solid $blue;
+        }
+        .input0 {
+                width: 200px;
+                margin-bottom: 10px;
         }
 }
 </style>

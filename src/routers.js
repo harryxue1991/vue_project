@@ -3,13 +3,13 @@ import Xin from './pages/xin.vue';
 
 const routers = [
         {
-                path: '/xin',
-                name: 'home',
-                component: Xin
-        },
-        {
                 path: '/',
                 component: Home
+        },
+        {
+                path: '/girl',
+                name: 'home',
+                component: Xin
         }
 ]
 export default routers
