@@ -1,27 +1,30 @@
 //common
-$commonFontColor : #888;
-$commonColorGreen : #29D0A2;
-$commonBorderColor : #e5e5e5;
-$commonBackgroundColor : #FAFAFA;
-$title: #253338;
-$content: #526E7A;
-$assist: #789F9C;
-$warning: #f66d60;
-$green: #84d156;
-$blue: #27A9F7;
+//background
+$commonBackgroundColor: #fafafa;
+
+//color
+$C-title: #253338;
+$C-content: #526E7A;
+$C-assist: #789F9C;
+$C-warning: #f66d60;
+$C-green: #84d156;
+$C-blue: #27A9F7;
+
 //z-index
 $level-1 : 1000;
-$level-2 : 900;
-$level-3 : 800;
-$level-4 : 700;
-$level-5 : 600;
+$level-2 : 800;
+$level-3 : 500;
+$level-4 : 300;
+$level-5 : 100;
 
-//基础font-size
-$font:16;
-//设计稿宽度
-$screen:750;
+//size
+$H-header: 60px;
+$H-footer: 100px;
+$H-main: calc(100% - #{$H-header + $H-footer});
 
-
+//wap端设计需要
+$font:16;  //基础font-size
+$screen:750; //设计稿宽度
 @function px2rem($n){
         @return #{$n/($screen*$font/320)}rem
 }

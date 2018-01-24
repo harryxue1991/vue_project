@@ -39,10 +39,12 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "../style/common.scss";
 #Header {
-        height: 60px;
-        line-height: 60px;
+        height: $H-header;
+        line-height: $H-header;
         border-bottom: 1px solid #ccc;
         color: pink;
+        box-sizing: border-box;
 }
 </style>

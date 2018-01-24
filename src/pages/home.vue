@@ -32,7 +32,7 @@
                                 <div v-text="age"></div>
                         </div>
                 </div>
-                <Footer></Footer>
+                <Footer :theme="theme"></Footer>
         </div>
 </template>
 <script>
@@ -42,7 +42,9 @@ export default {
         name: 'home',
         data(){
                 return{
-                        radio:'1',
+                        theme:"个人空间首页",
+
+                        radio:"1",
                         name:'',
                         age:'',
                         // ------------------
@@ -96,21 +98,21 @@ export default {
 #Home {
         height: 100%;
         .main {
-                min-height: calc(100% - 162px);
+                min-height: $H-main;
                 box-sizing: border-box;
                 padding: 0 20px;
         }
         .content {
                 text-align: center;
                 margin: 0 auto 30px;
-                color: $blue;
+                color: $C-blue;
                 font-size: 22px;
                 width: px2rem(1000);
         }
         .link {
                 font-size: 24px;
-                color: $blue;
-                border: 1px solid $blue;
+                color: $C-blue;
+                border: 1px solid $C-blue;
         }
         .input0 {
                 width: 200px;

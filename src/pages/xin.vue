@@ -49,10 +49,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "../style/common.scss";
 #Xin {
         height: 100%;
         .main {
-                min-height: calc(100% - 162px);
+                min-height: $H-main;
         }
         .content {
                 color: pink;
