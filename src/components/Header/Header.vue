@@ -16,7 +16,7 @@
                                         <a href="http://www.baidu.com" target="_blank">百度</a>
                                 </el-menu-item>
                                 <el-menu-item index="2-2">
-                                        <a href="http://www.zhaikexueyaun.com" target="_blank">宅客学院</a>
+                                        <a href="http://www.zhaikexueyuan.com" target="_blank">宅客学院</a>
                                 </el-menu-item>
                         </el-submenu>
                 </el-menu>

@@ -14,8 +14,11 @@ const store = new Vuex.Store({
                 ]
         },
         mutations: {
-                newLikes(state, msg) {
-                        state.links = msg
+                addLikes(state, msg) {
+                        state.likes.push(msg)
+                },
+                addAge(state) {
+                        state.age++;
                 }
         },
         getters: {
@@ -23,9 +26,23 @@ const store = new Vuex.Store({
                         return state.likes.filter(todo => todo.girl == '丝')
                 },
                 getTodoById: (state) => (id) => {
-                        return state.likes.find(todo => todo.id === id)
+                        return state.likes.find(todo => todo.id == id)
+                },
+                // addTodo: state => {
+                //         return state.likes.push({'id':'100',"fruits":"哇哈哈","girl":"两仪"})
+                // }
+        },
+        actions: {
+                increment ({ commit }) {
+                        commit('addAge')
+                },
+                incrementAsync ({ commit },msg) {
+                        // 延时1秒  
+                        setTimeout(() => {
+                                commit('addLikes',msg)
+                        }, 1000)
                 }
-        }
+        }        
 })
 
 export default store

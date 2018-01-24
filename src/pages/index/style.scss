@@ -15,16 +15,20 @@
                         font-size: 22px;
                         width: px2rem(1000);
                 }
+                .link {
+                        font-size: 24px;
+                        color: $C-blue;
+                        border: 1px solid $C-blue;
+                }
                 .modular {
                         border: 1px solid $C-assist;
                         margin-bottom: 30px;
                         &:last-child{
                                 margin-bottom: 0;
                         }
-                        .link {
-                                font-size: 24px;
-                                color: $C-blue;
-                                border: 1px solid $C-blue;
+                        .likesId {
+                                margin-right: 8px;
+                                color: orange;
                         }
                         .input0 {
                                 width: 200px;
