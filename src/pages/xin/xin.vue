@@ -16,16 +16,16 @@
                                 </div>
                         </div>
                 </div>
-                <Footer></Footer>
+                <Footer :theme="theme"></Footer>
         </div>
 </template>
 <script>
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 export default {
         data(){
                 return{
-
+                        theme:"辛超的秘密",
                 }
         },
         components: {
@@ -49,15 +49,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../style/common.scss";
-#Xin {
-        height: 100%;
-        .main {
-                min-height: $H-main;
-        }
-        .content {
-                color: pink;
-                font-size: 22px;
-        }
-}
+@import "../../styles/common.scss";
+@import "./style.scss";
 </style>

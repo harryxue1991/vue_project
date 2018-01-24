@@ -1,0 +1,35 @@
+#Home {
+        height: 100%;
+        .main {
+                min-height: $H-main;
+                box-sizing: border-box;
+                padding: 0 20px;
+                width: 1200px;
+                margin: 0 auto;
+                // overflow: hidden;
+                border:1px solid transparent;
+                .content {
+                        text-align: center;
+                        margin: 0 auto 30px;
+                        color: $C-blue;
+                        font-size: 22px;
+                        width: px2rem(1000);
+                }
+                .modular {
+                        border: 1px solid $C-assist;
+                        margin-bottom: 30px;
+                        &:last-child{
+                                margin-bottom: 0;
+                        }
+                        .link {
+                                font-size: 24px;
+                                color: $C-blue;
+                                border: 1px solid $C-blue;
+                        }
+                        .input0 {
+                                width: 200px;
+                                margin-bottom: 10px;
+                        }
+                }
+        }
+}

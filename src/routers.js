@@ -1,5 +1,5 @@
-import Home from './pages/home.vue';
-import Xin from './pages/xin.vue';
+import Home from './pages/index/index.vue';
+import Xin from './pages/xin/xin.vue';
 
 const routers = [{
                 path: '/',

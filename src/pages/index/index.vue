@@ -6,40 +6,45 @@
                                 <router-link  to="girl" class="link">跳转到girl</router-link>
                         </div>
                         <div class="content">home的 内容</div>
-                        <div class="input0">
-                                <el-input v-model="fruits" placeholder="输入水果"></el-input>
-                                <el-input v-model="girl" placeholder="输入girl"></el-input>
-                        </div>
-                        <div class="input0">
-                                <el-input v-model="num" placeholder="getter查询数据"></el-input>
-                        </div>
-                        <el-button type="primary" @click="addMsg">store添加数据</el-button>
-                        <el-button type="primary" @click="getStore">getter查询数据</el-button>
-                        <el-button type="primary" @click="getMsg">获取服务器数据</el-button>
-                        <div>
-                                <div v-for="(item,index) in mylike" :key="index">
-                                        <div>
-                                                <span>我是</span>
-                                                <span>{{myName}}</span>
-                                                <span v-text="item.fruits"></span>
-                                                <span v-text="item.girl"></span>
+                        <div class="modular">
+                                <div class="input0">
+                                        <el-input v-model="fruits" placeholder="输入水果"></el-input>
+                                        <el-input v-model="girl" placeholder="输入girl"></el-input>
+                                </div>
+                                <div>
+                                        <div v-for="(item,index) in mylike" :key="index">
+                                                <div>
+                                                        <span>我是</span>
+                                                        <span>{{myName}}</span>
+                                                        <span v-text="item.fruits"></span>
+                                                        <span v-text="item.girl"></span>
+                                                </div>
                                         </div>
                                 </div>
+                                <el-button type="primary" @click="addMsg">store添加数据</el-button>
+                        </div>
+                        <div class="modular">
+                                <div class="input0">
+                                        <el-input v-model="num" placeholder="getter查询数据"></el-input>
+                                </div>
+                                <el-button type="primary" @click="getStore">getter查询数据</el-button><span>store里的数据id</span>
                                 <div v-if="getFruits != null" v-text="getFruits.fruits"></div>
                         </div>
-                        <div>
-                                <div v-text="name"></div>
-                                <div v-text="age"></div>
+                        <div class="modular">
+                                <el-button type="primary" @click="getMsg">获取服务器数据</el-button>
+                                <div>
+                                        <div v-text="name"></div>
+                                        <div v-text="age"></div>
+                                </div>
                         </div>
                 </div>
                 <Footer :theme="theme"></Footer>
         </div>
 </template>
 <script>
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 export default {
-        name: 'home',
         data(){
                 return{
                         theme:"个人空间首页",
@@ -50,7 +55,7 @@ export default {
                         // ------------------
                         fruits:'',
                         girl:'',
-                        num:'',
+                        num:'1',
                         getFruits: {}
                 }
         },
@@ -94,29 +99,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../style/common.scss";
-#Home {
-        height: 100%;
-        .main {
-                min-height: $H-main;
-                box-sizing: border-box;
-                padding: 0 20px;
-        }
-        .content {
-                text-align: center;
-                margin: 0 auto 30px;
-                color: $C-blue;
-                font-size: 22px;
-                width: px2rem(1000);
-        }
-        .link {
-                font-size: 24px;
-                color: $C-blue;
-                border: 1px solid $C-blue;
-        }
-        .input0 {
-                width: 200px;
-                margin-bottom: 10px;
-        }
-}
+@import "../../styles/common.scss";
+@import "./style.scss";
 </style>

@@ -39,28 +39,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import "../style/common.scss";
-#Footer {
-        height: $H-footer;
-        background-color: #f5f5f5;
-        color: $C-content;
-        box-sizing: border-box;
-        .main {
-                width: 1200px;
-                margin: 0 auto;
-                text-align: center;
-                .head {
-                        padding-top: 20px;
-                }
-                .year {
-                        margin-right: 10px;
-                }
-                .foot {
-                        margin-top: 15px;
-                        .theme {
-                                margin-right: 15px;
-                        }
-                }
-        }
-}
+@import "../../styles/common.scss";
+@import "./style.scss";
 </style>
