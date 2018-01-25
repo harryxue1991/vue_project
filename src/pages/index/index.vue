@@ -118,7 +118,7 @@ export default {
                         this.$store.dispatch('increment')
                 },
                 reduceAge() {
-                        this.$store.dispatch('actionA',100).then((res) => {
+                        this.$store.dispatch('actionB',100).then((res) => {
                                 console.log(res)
                         })
                 },

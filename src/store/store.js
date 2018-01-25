@@ -31,10 +31,7 @@ const store = new Vuex.Store({
                 },
                 getTodoById: (state) => (id) => {
                         return state.likes.find(todo => todo.id == id)
-                },
-                // addTodo: state => {
-                //         return state.likes.push({'id':'100',"fruits":"哇哈哈","girl":"两仪"})
-                // }
+                }
         },
         actions: {
                 increment ({ commit }) {
@@ -53,12 +50,12 @@ const store = new Vuex.Store({
                 
                 async actionA ({ commit },num) {
                         commit('reduceAge', await timeout(num));
-                        return '完成11'
                 },
-                // async actionB ({ dispatch, commit }) {
-                //         await dispatch('actionA') // 等待 actionA 完成
-                //         commit('increment', await getOtherData());
-                // }
+                async actionB ({ dispatch, commit },num) {
+                        await dispatch('actionA',num) // 等待 actionA 完成
+                        commit('addAge');
+                        return '完成'
+                }
                       
         }        
 })

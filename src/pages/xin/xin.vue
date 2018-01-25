@@ -37,7 +37,7 @@ export default {
                         return this.$store.state.likes
                 },
                 myName() {
-                          return this.$store.state.name
+                        return this.$store.state.name
                 }
         },
         mounted(){
