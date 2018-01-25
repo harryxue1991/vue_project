@@ -53,6 +53,7 @@ const store = new Vuex.Store({
                 
                 async actionA ({ commit },num) {
                         commit('reduceAge', await timeout(num));
+                        return '完成11'
                 },
                 // async actionB ({ dispatch, commit }) {
                 //         await dispatch('actionA') // 等待 actionA 完成
