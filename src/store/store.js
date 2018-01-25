@@ -19,6 +19,10 @@ const store = new Vuex.Store({
                 },
                 addAge(state) {
                         state.age++;
+                },
+                reduceAge(state,num) {
+                        state.age--;
+                        state.age += num;
                 }
         },
         getters: {
@@ -34,15 +38,36 @@ const store = new Vuex.Store({
         },
         actions: {
                 increment ({ commit }) {
-                        commit('addAge')
+                        setTimeout(() => {
+                                commit('addAge')
+                        },0)
                 },
                 incrementAsync ({ commit },msg) {
-                        // 延时1秒  
-                        setTimeout(() => {
-                                commit('addLikes',msg)
-                        }, 1000)
-                }
+                        return new Promise((resolve, reject) => {
+                                setTimeout(() => {
+                                        commit('addLikes',msg)
+                                        resolve('添加成功')
+                                }, 1000)
+                        })
+                },
+                
+                async actionA ({ commit },num) {
+                        commit('reduceAge', await timeout(num));
+                },
+                // async actionB ({ dispatch, commit }) {
+                //         await dispatch('actionA') // 等待 actionA 完成
+                //         commit('increment', await getOtherData());
+                // }
+                      
         }        
 })
+
+const timeout = function (num) {
+        return new Promise((resolve) => {
+                setTimeout(function () {
+                        resolve(num);
+                }, 1000);
+        });
+}
 
 export default store

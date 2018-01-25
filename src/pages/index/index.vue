@@ -40,6 +40,7 @@
                         </div>
                         <div class="modular">
                                 <el-button type="primary" @click="addAge">异步action 增加年龄</el-button>
+                                <el-button type="primary" @click="reduceAge">异步action 减少年龄</el-button>
                                 <el-button type="primary" @click="getMsgAction">异步action 增加数据</el-button>
                         </div>
                         <div class="modular">
@@ -112,21 +113,27 @@ export default {
                 getStore() {
                         this.getFruits = this.$store.getters.getTodoById(this.num);
                 },
+                // 异步操作修改store
                 addAge() {
                         this.$store.dispatch('increment')
                 },
-                // 异步操作修改store
+                reduceAge() {
+                        this.$store.dispatch('actionA',100).then((res) => {
+                                console.log(res)
+                        })
+                },
                 getMsgAction() {
                         if(this.girl == '' || this.fruits == '') {
                                 this.$message.error('请输入内容')
                         }else{
-                                this.$store.dispatch('incrementAsync', {id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl})
+                                this.$store.dispatch('incrementAsync', {id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl}).then((res) => {
+                                        console.log(res)
+                                })
                                 this.fruits = '';
                                 this.girl = '';
                         }
                 }
-
-        },
+        }
 }
 </script>
 <style lang="scss" scoped>
