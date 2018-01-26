@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import * as types from './mutation-types'
+import actions from './actions'
 
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
+        actions,
         state: {
                 name: '薛辛超',
                 age: '18',
@@ -14,15 +17,15 @@ const store = new Vuex.Store({
                 ]
         },
         mutations: {
-                addLikes(state, msg) {
+                [types.ADD_LIKE](state, msg) {
                         state.likes.push(msg)
                 },
-                addAge(state) {
+                [types.ADD_AGE](state) {
                         state.age++;
                 },
-                reduceAge(state,num) {
+                [types.REDUCE_AGE](state,num) {
                         state.age--;
-                        state.age += num;
+                        state.age -= num;
                 }
         },
         getters: {
@@ -32,40 +35,7 @@ const store = new Vuex.Store({
                 getTodoById: (state) => (id) => {
                         return state.likes.find(todo => todo.id == id)
                 }
-        },
-        actions: {
-                increment ({ commit }) {
-                        setTimeout(() => {
-                                commit('addAge')
-                        },0)
-                },
-                incrementAsync ({ commit },msg) {
-                        return new Promise((resolve, reject) => {
-                                setTimeout(() => {
-                                        commit('addLikes',msg)
-                                        resolve('添加成功')
-                                }, 1000)
-                        })
-                },
-                
-                async actionA ({ commit },num) {
-                        commit('reduceAge', await timeout(num));
-                },
-                async actionB ({ dispatch, commit },num) {
-                        await dispatch('actionA',num) // 等待 actionA 完成
-                        commit('addAge');
-                        return '完成'
-                }
-                      
-        }        
+        }
 })
-
-const timeout = function (num) {
-        return new Promise((resolve) => {
-                setTimeout(function () {
-                        resolve(num);
-                }, 1000);
-        });
-}
 
 export default store

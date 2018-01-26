@@ -23,6 +23,11 @@
                 .modular {
                         border: 1px solid $C-assist;
                         margin-bottom: 30px;
+                        color: $C-content;
+                        .title {
+                                color: $C-title;
+                                font-size: 22px;
+                        }
                         &:last-child{
                                 margin-bottom: 0;
                         }

@@ -8,10 +8,13 @@
                         </div>
                         <div class="content">vuex 测试</div>
                         <div class="modular">
-                                <div class="input0">
-                                        <el-input v-model="fruits" placeholder="输入水果"></el-input>
-                                        <el-input v-model="girl" placeholder="输入girl"></el-input>
+                                <div>
+                                        <span>试用过滤器</span>
+                                        <span>{{price | currency}}</span>
                                 </div>
+                        </div>
+                        <div class="modular">
+                                <div class="title">store 列表</div>
                                 <div>
                                         <div v-for="(item,index) in mylike" :key="index">
                                                 <div>
@@ -26,7 +29,14 @@
                                                 </div>
                                         </div>
                                 </div>
+                        </div>
+                        <div class="modular">
+                                <div class="input0">
+                                        <el-input v-model="fruits" placeholder="输入水果"></el-input>
+                                        <el-input v-model="girl" placeholder="输入girl"></el-input>
+                                </div>
                                 <el-button type="primary" @click="addMsg">store添加数据</el-button>
+                                <el-button type="primary" @click="getMsgAction">异步action 增加数据</el-button>
                         </div>
                         <div class="modular">
                                 <div class="input0">
@@ -41,7 +51,6 @@
                         <div class="modular">
                                 <el-button type="primary" @click="addAge">异步action 增加年龄</el-button>
                                 <el-button type="primary" @click="reduceAge">异步action 减少年龄</el-button>
-                                <el-button type="primary" @click="getMsgAction">异步action 增加数据</el-button>
                         </div>
                         <div class="modular">
                                 <el-button type="primary" @click="getMsg">获取服务器数据</el-button>
@@ -57,12 +66,16 @@
 <script>
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
+import { mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 export default {
         data(){
                 return{
                         // 传给子元素footer
                         theme:"个人空间首页",
-
+                        price: '1221221',
                         name:'',
                         age:'',
                         // ------------处理store
@@ -76,21 +89,18 @@ export default {
                 Header,
                 Footer
         },
-        computed: {  //将store映射到组件
-                mylike() {                             //mylike 可以直接在html 中使用, 可以定义为数组或字符串
-                        return this.$store.state.likes
-                },
-                myName() {
-                        return this.$store.state.name
-                },
-                myAge() {
-                        return this.$store.state.age
-                }
-        },
+        computed: mapState({  //将store映射到组件
+                ...mapGetters(['doneTodos','getTodoById']),
+                mylike: 'likes',
+                myName: 'name',
+                myAge:'age',
+        }),
         mounted(){
 
         },
         methods:{
+                ...mapMutations(['ADD_LIKE']), 
+                ...mapActions(['increment','incrementAsync','actionA','actionB']),
                 // 使用axios请求数据
                 getMsg() {
                         this.$get('xin')
@@ -99,26 +109,29 @@ export default {
                                 this.age = response.age;
                         })
                 },
+
                 // 在store中添加属性
                 addMsg: function() {
                         if(this.girl == '' || this.fruits == '') {
                                 this.$message.error('请输入内容')
                         }else{
-                                this.$store.commit('addLikes', {id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl})
+                                this.ADD_LIKE({id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl});
                                 this.fruits = '';
                                 this.girl = '';
                         }
                 },
+
                 // 在store中使用gitter功能查询
                 getStore() {
-                        this.getFruits = this.$store.getters.getTodoById(this.num);
+                        this.getFruits = this.getTodoById(this.num)
                 },
+
                 // 异步操作修改store
                 addAge() {
-                        this.$store.dispatch('increment')
+                        this.increment();
                 },
                 reduceAge() {
-                        this.$store.dispatch('actionB',100).then((res) => {
+                        this.actionB(1).then((res) => {
                                 console.log(res)
                         })
                 },
@@ -126,7 +139,7 @@ export default {
                         if(this.girl == '' || this.fruits == '') {
                                 this.$message.error('请输入内容')
                         }else{
-                                this.$store.dispatch('incrementAsync', {id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl}).then((res) => {
+                                this.incrementAsync({id: this.mylike.length+1,'fruits':this.fruits,'girl':this.girl}).then((res) => {
                                         console.log(res)
                                 })
                                 this.fruits = '';
