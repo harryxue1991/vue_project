@@ -12,7 +12,7 @@ import store from './store/store'
 import App from './app';
 
 // 提取axios方法
-import {post,get,patch,put} from './utils/http';
+import {post,get,patch,put} from './api/http';
 Vue.prototype.$post=post;
 Vue.prototype.$get=get;
 Vue.prototype.$patch=patch;

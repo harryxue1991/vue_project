@@ -43,9 +43,14 @@
                                         <el-input v-model="num" placeholder="输入上面的id"></el-input>
                                 </div>
                                 <el-button type="primary" @click="getStore">getter查询数据</el-button><span>测试store里gitter方法查询</span>
+                                <el-button type="primary" @click="getStoreGril">getter过滤girl</el-button>
                                 <div v-if="getFruits != null">
                                         <span v-text="getFruits.fruits"></span>
                                         <span v-text="getFruits.girl"></span>
+                                </div>
+                                <div v-if="getGirl != null">
+                                        <span v-text="getGirl.fruits"></span>
+                                        <span v-text="getGirl.girl"></span>
                                 </div>
                         </div>
                         <div class="modular">
@@ -66,10 +71,7 @@
 <script>
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
-import { mapState } from 'vuex'
-import { mapMutations } from 'vuex'
-import { mapGetters } from 'vuex'
-import { mapActions } from 'vuex'
+import { mapState,mapMutations,mapGetters,mapActions } from 'vuex'
 export default {
         data(){
                 return{
@@ -82,7 +84,8 @@ export default {
                         fruits:'',
                         girl:'',
                         num:'',
-                        getFruits: {}
+                        getFruits: {},
+                        getGirl: {}
                 }
         },
         components: {
@@ -122,8 +125,12 @@ export default {
                 },
 
                 // 在store中使用gitter功能查询
+                getStoreGril() {
+                        this.getGirl = this.doneTodos[0];  //this.doneTodos 返回的是数组
+                },
                 getStore() {
-                        this.getFruits = this.getTodoById(this.num)
+                        this.getFruits = this.getTodoById(this.num);
+
                 },
 
                 // 异步操作修改store

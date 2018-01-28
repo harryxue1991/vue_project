@@ -3,10 +3,17 @@ import Vuex from 'vuex'
 import * as types from './mutation-types'
 import actions from './actions'
 
+import members from './modules/members'
+import products from './modules/products'
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
         actions,
+        modules: {
+                members,
+                products
+        },
         state: {
                 name: '薛辛超',
                 age: '18',
@@ -32,7 +39,7 @@ const store = new Vuex.Store({
                 doneTodos: state => {  //过滤器, 过滤likes中gitl为'丝'的项目
                         return state.likes.filter(todo => todo.girl == '丝')
                 },
-                getTodoById: (state) => (id) => {
+                getTodoById: state => (id) => {
                         return state.likes.find(todo => todo.id == id)
                 }
         }
