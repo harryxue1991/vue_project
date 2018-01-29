@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "cooking-vue2": "*",
+    "lodash": "^4.17.4",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.5.13"
   }

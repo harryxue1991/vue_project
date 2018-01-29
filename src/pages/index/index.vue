@@ -1,6 +1,6 @@
 <template>
         <div  id="Home">
-                <Header></Header>
+                <Header :activeIndex="activeIndex"></Header>
                 <div class="main">
                         <div>
                                 <span>跳转链接:</span>
@@ -75,7 +75,7 @@ import { mapState,mapMutations,mapGetters,mapActions } from 'vuex'
 export default {
         data(){
                 return{
-                        // 传给子元素footer
+                        activeIndex:'/',
                         theme:"个人空间首页",
                         price: '1221221',
                         name:'',
@@ -92,12 +92,14 @@ export default {
                 Header,
                 Footer
         },
-        computed: mapState({  //将store映射到组件
+        computed: {
                 ...mapGetters(['doneTodos','getTodoById']),
-                mylike: 'likes',
-                myName: 'name',
-                myAge:'age',
-        }),
+                ...mapState({  //将store映射到组件
+                        mylike: state => state.all.likes,
+                        myName: state => state.all.name,
+                        myAge:state => state.all.age,
+                })
+        },
         mounted(){
 
         },
@@ -126,7 +128,7 @@ export default {
 
                 // 在store中使用gitter功能查询
                 getStoreGril() {
-                        this.getGirl = this.doneTodos[0];  //this.doneTodos 返回的是数组
+                        this.getGirl = this.doneTodos;  //this.doneTodos 返回的是数组
                 },
                 getStore() {
                         this.getFruits = this.getTodoById(this.num);

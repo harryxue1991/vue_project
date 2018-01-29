@@ -7,7 +7,7 @@ import Vue from 'vue';
 import ElementUI from 'element-ui'
 import VueRouter from 'vue-router'
 import routers from './routers'
-import store from './store/store'
+import store from './store/'
 
 import App from './app';
 

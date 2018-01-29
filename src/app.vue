@@ -3,7 +3,14 @@
 </template>
 
 <script>
+      import { mapActions } from 'vuex'
       export default {
-            name: 'app'
+            name: 'app',
+            mounted() {
+                  this.getAll();
+            },
+            methods: {
+                  ...mapActions(['getAll']),
+            }
       };
 </script>

@@ -15,32 +15,30 @@ const store = new Vuex.Store({
                 products
         },
         state: {
-                name: '薛辛超',
-                age: '18',
-                sex: '男',
-                likes: [
-                        {"id":"1","fruits":"apple","girl":"辛"},
-                        {"id":"2","fruits":"banner","girl":"丝"}
-                ]
+                all:{}
         },
         mutations: {
+                [types.INIT](state,msg) {
+                        state.all = msg
+                },
                 [types.ADD_LIKE](state, msg) {
-                        state.likes.push(msg)
+                        state.all.likes.push(msg)
                 },
                 [types.ADD_AGE](state) {
-                        state.age++;
+                        state.all.age++;
                 },
                 [types.REDUCE_AGE](state,num) {
-                        state.age--;
-                        state.age -= num;
+                        state.all.age--;
+                        state.all.age -= num;
                 }
         },
         getters: {
                 doneTodos: state => {  //过滤器, 过滤likes中gitl为'丝'的项目
-                        return state.likes.filter(todo => todo.girl == '丝')
+                        if( state.all.likes != null) 
+                                return state.all.likes.filter(todo => todo.fruits == 'apple')
                 },
                 getTodoById: state => (id) => {
-                        return state.likes.find(todo => todo.id == id)
+                        return state.all.likes.find(todo => todo.id == id)
                 }
         }
 })

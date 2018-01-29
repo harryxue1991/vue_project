@@ -27,7 +27,7 @@ export default {
         },
         computed: {  //将store映射到组件
                 myName() {
-                        return this.$store.state.name
+                        return this.$store.state.all.name
                 }
         },
         mounted(){

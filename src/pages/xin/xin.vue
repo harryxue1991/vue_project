@@ -1,10 +1,9 @@
 <template>
         <div  id="Xin">
-                <Header></Header>
+                <Header :activeIndex="activeIndex"></Header>
                 <div class="main">
-                        <div class="content">薛辛超的内容</div>
+                        <div class="content">{{myName}}的内容</div>
                         <router-link  to="/">返回</router-link>
-
                         <div>
                                 <div v-for="(item,index) in mylike" :key="index">
                                         <div>
@@ -15,6 +14,15 @@
                                         </div>
                                 </div>
                         </div>
+                        <div class="main_content">
+                                <div>
+                                        <span>{{memberName}}</span>
+                                </div>
+                                <div v-for="(item,index) in myMember" :key='index'>
+                                        <div v-text="item.name"></div>
+                                        <div v-text="item.age"></div>
+                                </div>
+                        </div>
                 </div>
                 <Footer :theme="theme"></Footer>
         </div>
@@ -22,29 +30,39 @@
 <script>
 import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import { mapState,mapMutations,mapGetters,mapActions } from 'vuex'
 export default {
         data(){
                 return{
+                        activeIndex:'/girl',
                         theme:"辛超的秘密",
+                        // ---------------------
+                        myMember: []
                 }
         },
         components: {
                 Header,
                 Footer
         },
-        computed: {  //将store映射到组件
-                mylike() {                             //mylike 可以直接在html 中使用, 可以定义为数组或字符串
-                        return this.$store.state.likes
-                },
-                myName() {
-                        return this.$store.state.name
-                }
+        computed: {
+                ...mapGetters('members',['allProducts']),
+                ...mapState({
+                        mylike: state => state.all.likes,
+                        myName: state => state.all.name,
+                        myAge:state => state.all.age,
+                }),
+                ...mapState('members',{
+                        memberName: state => state.name,
+                }),
         },
         mounted(){
-
+                this.getMember();
         },
         methods:{
-
+                getMember() {
+                        // this.myMember = this.$store.getters['members/allProducts'];
+                        this.myMember = this.allProducts;
+                }
         },
 }
 </script>
