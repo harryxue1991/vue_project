@@ -36,6 +36,8 @@ const store = new Vuex.Store({
                 doneTodos: state => {  //过滤器, 过滤likes中gitl为'丝'的项目
                         if( state.all.likes != null) 
                                 return state.all.likes.filter(todo => todo.fruits == 'apple')
+                        else 
+                                return []
                 },
                 getTodoById: state => (id) => {
                         return state.all.likes.find(todo => todo.id == id)

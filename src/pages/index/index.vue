@@ -54,7 +54,8 @@
                                 </div>
                         </div>
                         <div class="modular">
-                                <el-button type="primary" @click="addAge">异步action 增加年龄</el-button>
+                                <el-button type="primary" @click="$store.commit('ADD_AGE')">增加年龄</el-button>
+                                <el-button type="primary" @click="increment">异步action 增加年龄</el-button>
                                 <el-button type="primary" @click="reduceAge">异步action 减少年龄</el-button>
                         </div>
                         <div class="modular">
@@ -128,16 +129,11 @@ export default {
 
                 // 在store中使用gitter功能查询
                 getStoreGril() {
-                        this.getGirl = this.doneTodos;  //this.doneTodos 返回的是数组
+                        this.getGirl = this.doneTodos[0];  //this.doneTodos 返回的是数组
                 },
                 getStore() {
                         this.getFruits = this.getTodoById(this.num);
 
-                },
-
-                // 异步操作修改store
-                addAge() {
-                        this.increment();
                 },
                 reduceAge() {
                         this.actionB(1).then((res) => {
